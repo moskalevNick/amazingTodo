@@ -1,0 +1,22 @@
+/node_modules
+/dist
+/public
+creds
+
+# IDE files
+.idea/*
+.vscode/*
+
+# Logs
+logs
+*.log
+
+# env
+.env
+
+#lock-files
+package-lock.json
+yarn.lock
+
+# production
+/build

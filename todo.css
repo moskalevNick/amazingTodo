@@ -1,0 +1,48 @@
+html {
+    width: 200px;
+    height: auto;
+    margin: 0px auto;
+}
+
+h2 {
+    width: 220px;
+    border: 8px inset rgb(2, 68, 247);
+    color: rgb(193, 4, 250);
+    border-radius: 10px;
+    height: auto;
+    margin-left: -30px;
+}
+
+body {
+    background-image: url(back.jpg);
+    background-repeat: no-repeat;
+    background-position-y: 80px;
+    background-position-x: -290px;
+}
+
+button {
+    background-color: rgb(1, 255, 255);
+    color: rgb(51, 156, 10);
+    border-radius: 10px;
+    width: 160px;
+    height: auto;
+    margin: 10px;
+}
+
+.important {
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+}
+
+input {
+    background-color: rgb(142, 240, 62);
+    width: auto;
+}
+
+ul {
+    color: rgb(255, 174, 0);
+    border: 4px inset rgb(228, 79, 79);
+    padding-inline-start: 20px;
+    background: rgb(60, 111, 252);
+    border-radius: 10px;
+}
