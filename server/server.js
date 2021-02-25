@@ -3,10 +3,11 @@ const { Router } = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
+const { Schema, model, Types } = require("mongoose")
 
 const app = express()
 const router = Router()
-const PORT = 3000
+const PORT = 5000
 const uri = "mongodb+srv://keks:22101995@cluster0.o9t1k.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 app.use(cors())
@@ -14,38 +15,20 @@ app.use(bodyParser.json())
 app.use(router)
 app.use(express.urlencoded({ extended: true }))
 
-const toDos = [
-  {
-    id: 1,
-    todo: "купить хлеб",
-    checked: true,
-    important: false,
-  },
-  {
-    id: 2,
-    todo: "вынести мусор",
-    checked: true,
-    important: true,
-  },
-  {
-    id: 3,
-    todo: "поесть",
-    checked: false,
-    important: false,
-  },
-  {
-    id: 4,
-    todo: "поспать",
-    checked: false,
-    important: true,
-  },
-]
-
-router.get("/", (req, res) => {
-  res.json(toDos)
+const schema = new Schema({
+  todo: { type: String, required: true },
+  important: { type: Boolean, required: true },
+  checked: { type: Boolean, required: true },
 })
 
-router.post("/", (req, res) => {
+const Todo = model("Todo", schema)
+
+router.get("/", async (req, res) => {
+  const todos = await Todo.find({})
+  res.json(todos)
+})
+
+router.post("/", async (req, res) => {
   toDos.push(req.body)
   res.send("success")
 })
