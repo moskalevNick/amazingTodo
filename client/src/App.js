@@ -13,8 +13,9 @@ function App() {
         } 
         return [currentArg, setArg] 
       } */
-  useEffect(() => {
-    fetch("http://localhost:5000", {
+      const url = "http://localhost:5000"
+      useEffect(() => {
+    fetch(url, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -24,11 +25,22 @@ function App() {
         return res.json()
       })
       .then((data) => {
-        console.log(data)
+        //console.log(data)
         setTodos(data)
       })
   }, [])
-  console.log(todos)
+  //console.log(todos)
+  
+  const removeTodo = (id) => {
+    fetch(`${url}/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    }) 
+
+         
+  }
 
   return (
     <div className="App">
@@ -36,7 +48,10 @@ function App() {
       {
         <div className="container">
           {todos.map((todo) => (
-            <div key={todo._id}>{todo.todo}</div>
+            <div key={todo._id}>
+              {todo.todo}
+              <button onClick={removeTodo.bind(null, todo._id)}>delete</button>
+            </div>
           ))}
         </div>
       }

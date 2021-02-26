@@ -3,7 +3,7 @@ const { Router } = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const mongoose = require("mongoose")
-const { Schema, model, Types } = require("mongoose")
+const { Schema, model } = require("mongoose")
 
 const app = express()
 const router = Router()
@@ -33,10 +33,11 @@ router.post("/", async (req, res) => {
   res.send("success")
 })
 
-router.delete("/:id", (req, res) => {
-  const newtoDos = toDos.filter((item) => item.id.toString() !== req.params.id)
-  toDos.splice(0, toDos.length)
-  newtoDos.forEach((item) => toDos.push(item))
+router.delete("/:id", async (req, res) => {
+  await Todo.findByIdAndDelete(req.params.id)
+  //const newtoDos = toDos.filter((item) => item.id.toString() !== req.params.id)
+  //toDos.splice(0, toDos.length)
+  //newtoDos.forEach((item) => toDos.push(item))
   res.send("delete")
 })
 
