@@ -29,31 +29,29 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-  toDos.push(req.body)
-  res.send("success")
+  const todo = new Todo(req.body)
+  await todo.save()
+  const todos = await Todo.find({})
+  res.json(todos)
 })
 
 router.delete("/:id", async (req, res) => {
   await Todo.findByIdAndDelete(req.params.id)
-  //const newtoDos = toDos.filter((item) => item.id.toString() !== req.params.id)
-  //toDos.splice(0, toDos.length)
-  //newtoDos.forEach((item) => toDos.push(item))
-  res.send("delete")
+  const todos = await Todo.find({})
+  res.json(todos)
 })
 
-router.put("/", (req, res) => {
-  toDos.forEach(function (item, i) {
-    if (req.body.id == item.id.toString()) {
-      toDos[i] = req.body
-    }
-  })
-  res.send("success")
+router.put("/:id", async (req, res) => {
+  await Todo.findByIdAndUpdate(req.params.id, req.body)
+  const todos = await Todo.find({})
+  res.json(todos)
 })
 
 async function start() {
   try {
     await mongoose.connect(uri, {
       useNewUrlParser: true,
+      useFindAndModify: false,
       useUnifiedTopology: true,
     })
     app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))

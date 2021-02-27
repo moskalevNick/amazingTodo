@@ -4,3 +4,29 @@
   margin: auto;
   padding: 5rem;
 }
+
+.important{
+  color: red;
+  cursor:pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.main{
+  color:black;
+  cursor:pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.todo{
+  display: flex;
+  margin: auto;
+  padding: 15px;
+  
+}
+
+.todos{
+  text-align: center;
+  
+}
